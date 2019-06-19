@@ -51,7 +51,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Gigs" id="DGz-qb-38o"/>
                     <connections>
-                        <segue destination="ba6-cG-U0X" kind="presentation" id="Cyk-uD-vUC"/>
+                        <segue destination="ba6-cG-U0X" kind="presentation" identifier="LoginViewModalSegue" id="Cyk-uD-vUC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OrD-Mu-9eW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -94,6 +94,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUw-Di-9XZ">
                                         <rect key="frame" x="0.0" y="124" width="394" height="30"/>
                                         <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="loginButtonTapped:" destination="ba6-cG-U0X" eventType="touchUpInside" id="ywX-XR-la4"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -107,9 +110,9 @@
                         <viewLayoutGuide key="safeArea" id="Jfj-R9-vqy"/>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="EUw-Di-9XZ" id="hA0-rf-MRO"/>
                         <outlet property="passwordTextField" destination="bTO-HJ-rh0" id="r8X-rP-Zpm"/>
                         <outlet property="segmentControl" destination="dCu-qX-e35" id="S4R-v7-Ot4"/>
-                        <outlet property="signUpButton" destination="EUw-Di-9XZ" id="hA0-rf-MRO"/>
                         <outlet property="usernameTextField" destination="nAh-lK-Qq1" id="SaH-90-P2b"/>
                     </connections>
                 </viewController>
