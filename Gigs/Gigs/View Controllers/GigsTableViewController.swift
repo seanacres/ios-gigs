@@ -47,7 +47,14 @@ class GigsTableViewController: UITableViewController {
         if segue.identifier == "LoginViewModalSegue" {
             guard let loginVC = segue.destination as? LoginViewController else { return }
             loginVC.gigController = gigController
+        } else if segue.identifier == "ShowGig" {
+            guard let gigDetailVC = segue.destination as? GigDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow  else { return }
+            gigDetailVC.gig = gigController.gigs[indexPath.row]
+            gigDetailVC.gigController = gigController
+        } else if segue.identifier == "AddGig" {
+            guard let gigDetailVC = segue.destination as? GigDetailViewController else { return }
+            gigDetailVC.gigController = gigController
         }
     }
-
 }
