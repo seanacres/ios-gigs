@@ -15,7 +15,7 @@ class GigsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -27,7 +27,6 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return gigController.gigs.count
     }
 
@@ -35,6 +34,10 @@ class GigsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         
+        let gig = gigController.gigs[indexPath.row]
+        cell.textLabel?.text = gig.title
+        df.dateStyle = .short
+        cell.detailTextLabel?.text = "Due: \(df.string(from: gig.dueDate))"
         return cell
     }
 
