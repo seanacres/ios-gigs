@@ -128,6 +128,7 @@ class GigController {
             request.httpBody = try jsonEncoder.encode(gig)
         } catch {
             completion(.noEncode)
+            return
         }
         
         URLSession.shared.dataTask(with: request) { (_, response, error) in
@@ -142,10 +143,8 @@ class GigController {
                 return
             }
             
+            self.gigs.append(gig)
+            completion(nil)
             }.resume()
-        
-        completion(nil)
     }
-    
-    
 }
