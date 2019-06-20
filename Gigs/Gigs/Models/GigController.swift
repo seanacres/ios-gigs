@@ -19,6 +19,7 @@ enum NetworkError: Error {
     case otherError
     case badData
     case noDecode
+    case noEncode
 }
 
 class GigController {
@@ -73,7 +74,78 @@ class GigController {
         }.resume()
     }
     
-    func fetchGigs(completion: @escaping (Result<[String], NetworkError>) -> ()) {
+    func fetchGigs(completion: @escaping (NetworkError?) -> ()) {
+        guard let bearer = bearer else {
+            completion(.noAuth)
+            return
+        }
         
+        let gigsURL = baseURL.appendingPathComponent("gigs")
+        var request = URLRequest(url: gigsURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.badAuth)
+                return
+            }
+            
+            if let _ = error {
+                completion(.otherError)
+                return
+            }
+            
+            guard let data = data else {
+                completion(.badData)
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                self.gigs = try jsonDecoder.decode([Gig].self, from: data)
+                completion(nil)
+            } catch {
+                completion(.noDecode)
+            }
+            }.resume()
     }
+    
+    func addGig(with gig: Gig, completion: @escaping(NetworkError?) -> ()) {
+        guard let bearer = bearer else {
+            completion(.noAuth)
+            return
+        }
+        
+        let gigsURL = baseURL.appendingPathComponent("gigs")
+        var request = URLRequest(url: gigsURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let jsonEncoder = JSONEncoder()
+        do {
+            request.httpBody = try jsonEncoder.encode(gig)
+        } catch {
+            completion(.noEncode)
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.badAuth)
+                return
+            }
+            
+            if let _ = error {
+                completion(.otherError)
+                return
+            }
+            
+            }.resume()
+        
+        completion(nil)
+    }
+    
+    
 }
