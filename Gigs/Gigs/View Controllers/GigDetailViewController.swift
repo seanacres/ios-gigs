@@ -19,9 +19,7 @@ class GigDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = ""
-        gigDescription.text = ""
-        // Do any additional setup after loading the view.
+        updateViews()
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -35,7 +33,7 @@ class GigDetailViewController: UIViewController {
                 print(error)
             } else {
                 DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
         }
@@ -49,6 +47,8 @@ class GigDetailViewController: UIViewController {
             datePicker.date = gig.dueDate
         }
         
+        title = ""
+        gigDescription.text = ""
         title = "New Gig"
     }
     

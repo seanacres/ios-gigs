@@ -123,21 +123,30 @@ class GigController {
         var request = URLRequest(url: gigsURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jsonEncoder = JSONEncoder()
         jsonEncoder.dateEncodingStrategy = .iso8601
         do {
-            request.httpBody = try jsonEncoder.encode(gig)
+            let jsonData = try jsonEncoder.encode(gig)
+            request.httpBody = jsonData
+//            print(NSString(data: request.httpBody!, encoding:String.Encoding.utf8.rawValue)!)
         } catch {
             completion(.noEncode)
             return
         }
         
-        URLSession.shared.dataTask(with: request) { (_, response, error) in
-            if let response = response as? HTTPURLResponse,
-                response.statusCode == 401 {
-                completion(.badAuth)
-                return
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 401 {
+                    completion(.badAuth)
+                    return
+                }
+                
+                if response.statusCode != 200 {
+                    completion(.otherError)
+                    return
+                }
             }
             
             if let _ = error {

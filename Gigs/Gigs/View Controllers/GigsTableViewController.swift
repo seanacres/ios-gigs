@@ -21,6 +21,8 @@ class GigsTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+        } else {
+            fetchGigs()
         }
     }
 
@@ -40,6 +42,19 @@ class GigsTableViewController: UITableViewController {
         cell.detailTextLabel?.text = "Due: \(df.string(from: gig.dueDate))"
         return cell
     }
+    
+    func fetchGigs() {
+        print("fetching gigs")
+        gigController.fetchGigs { (error) in
+            if let error = error {
+                print(error)
+            } else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
 
     // MARK: - Navigation
 
@@ -51,6 +66,7 @@ class GigsTableViewController: UITableViewController {
             guard let gigDetailVC = segue.destination as? GigDetailViewController,
                 let indexPath = tableView.indexPathForSelectedRow  else { return }
             gigDetailVC.gig = gigController.gigs[indexPath.row]
+            print(gigController.gigs[indexPath.row])
             gigDetailVC.gigController = gigController
         } else if segue.identifier == "AddGig" {
             guard let gigDetailVC = segue.destination as? GigDetailViewController else { return }
