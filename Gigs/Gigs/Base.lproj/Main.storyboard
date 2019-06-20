@@ -42,6 +42,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Xei-NK-XKZ" kind="show" identifier="ShowGig" id="4Hj-yh-k5m"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -49,7 +52,13 @@
                             <outlet property="delegate" destination="3ft-KU-8kS" id="0oF-gz-PTc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Gigs" id="DGz-qb-38o"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="DGz-qb-38o">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="V1a-2f-uIS">
+                            <connections>
+                                <segue destination="Xei-NK-XKZ" kind="show" identifier="AddGig" id="fey-uX-M0K"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="ba6-cG-U0X" kind="presentation" identifier="LoginViewModalSegue" id="Cyk-uD-vUC"/>
                     </connections>
@@ -57,6 +66,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OrD-Mu-9eW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1352.1739130434785" y="122.54464285714285"/>
+        </scene>
+        <!--New Gig-->
+        <scene sceneID="u9E-1x-jR9">
+            <objects>
+                <viewController id="Xei-NK-XKZ" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cTb-Az-foU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DEg-yD-TZR">
+                                <rect key="frame" x="8" y="148" width="398" height="706"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vJ5-Jq-HNg">
+                                        <rect key="frame" x="0.0" y="0.0" width="398" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gig Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyt-gy-twi">
+                                                <rect key="frame" x="0.0" y="0.0" width="68.5" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pZd-y0-xPX">
+                                                <rect key="frame" x="76.5" y="0.0" width="321.5" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcU-fJ-6cp">
+                                        <rect key="frame" x="0.0" y="38" width="398" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="xtd-ov-RiQ">
+                                        <rect key="frame" x="0.0" y="66.5" width="398" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="582751493.83404505">
+                                            <!--2019-06-20 19:24:53 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6C-GG-xQx">
+                                        <rect key="frame" x="0.0" y="290.5" width="398" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ukh-F9-GOa">
+                                        <rect key="frame" x="0.0" y="319" width="398" height="387"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PA6-zn-erO" firstAttribute="bottom" secondItem="DEg-yD-TZR" secondAttribute="bottom" constant="8" id="l6o-bO-oVv"/>
+                            <constraint firstItem="PA6-zn-erO" firstAttribute="trailing" secondItem="DEg-yD-TZR" secondAttribute="trailing" constant="8" id="tUb-io-n3x"/>
+                            <constraint firstItem="DEg-yD-TZR" firstAttribute="top" secondItem="PA6-zn-erO" secondAttribute="top" constant="8" id="vQd-fP-8bx"/>
+                            <constraint firstItem="DEg-yD-TZR" firstAttribute="leading" secondItem="PA6-zn-erO" secondAttribute="leading" constant="8" id="wwy-gZ-eB8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PA6-zn-erO"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Gig" id="m3J-Mh-3dm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="a1D-5G-sh0">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="Xei-NK-XKZ" id="iE4-d3-lfE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="xtd-ov-RiQ" id="l1C-6u-4b4"/>
+                        <outlet property="gigDescription" destination="Ukh-F9-GOa" id="gXX-UF-hfj"/>
+                        <outlet property="gigTitle" destination="pZd-y0-xPX" id="61P-Rb-hdG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dul-ea-kie" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2239" y="515"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="gbk-kj-Eck">
@@ -139,4 +230,7 @@
             <point key="canvasLocation" x="442.02898550724643" y="122.54464285714285"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fey-uX-M0K"/>
+    </inferredMetricsTieBreakers>
 </document>

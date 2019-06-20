@@ -13,8 +13,17 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+}
+
 class GigController {
     var bearer: Bearer?
+    var gigs: [Gig] = []
     private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
     func loginWith(user: User, loginType: LoginType, completion: @escaping (Error?) -> ()) {
@@ -62,5 +71,9 @@ class GigController {
             
             completion(nil)
         }.resume()
+    }
+    
+    func fetchGigs(completion: @escaping (Result<[String], NetworkError>) -> ()) {
+        
     }
 }
