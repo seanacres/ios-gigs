@@ -103,6 +103,7 @@ class GigController {
             }
             
             let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
             do {
                 self.gigs = try jsonDecoder.decode([Gig].self, from: data)
                 completion(nil)
@@ -124,6 +125,7 @@ class GigController {
         request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
         do {
             request.httpBody = try jsonEncoder.encode(gig)
         } catch {
