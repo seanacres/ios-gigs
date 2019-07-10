@@ -8,17 +8,17 @@
 
 import Foundation
 
+enum LoginType: String {
+    case signUp = "signup"
+    case logIn = "login"
+}
+
 class GigController {
     enum HTTPMethod: String {
         case get = "GET"
         case put = "PUT"
         case post = "POST"
         case delete = "DELETE"
-    }
-    
-    enum LoginType: String {
-        case signUp = "signup"
-        case logIn = "login"
     }
     
     var bearer: Bearer?
