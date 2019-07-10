@@ -51,7 +51,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Gigs" id="1kh-gk-3U8"/>
                     <connections>
-                        <segue destination="Ut0-WJ-qJI" kind="presentation" animates="NO" id="cXa-UT-6wz"/>
+                        <segue destination="Ut0-WJ-qJI" kind="presentation" identifier="ShowLogin" animates="NO" id="cXa-UT-6wz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wkU-VR-k96" userLabel="First Responder" sceneMemberID="firstResponder"/>
