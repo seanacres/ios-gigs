@@ -21,6 +21,16 @@ class GigsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "ShowLogin", sender: self)
+        } else {
+            gigController.fetchGigs { (error) in
+                if let error = error {
+                    NSLog("Error fetching gigs: \(error)")
+                } else {
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
         }
     }
 

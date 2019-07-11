@@ -13,18 +13,16 @@ class GigDetailViewController: UIViewController {
     @IBOutlet weak var jobTitleTextField: UITextField!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var gigController: GigController!
-    var gig: Gig? {
-        didSet {
-            updateViews()
-        }
-    }
+    var gig: Gig?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "New Gig"
         descriptionTextView.text = ""
+        updateViews()
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -40,7 +38,7 @@ class GigDetailViewController: UIViewController {
                 NSLog("Error adding gig: \(error)")
             } else {
                 DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
         }
@@ -49,6 +47,7 @@ class GigDetailViewController: UIViewController {
     
     private func updateViews() {
         guard let gig = gig else { return }
+        saveButton.isEnabled = false
         title = gig.title
         jobTitleTextField.text = gig.title
         dueDatePicker.date = gig.dueDate

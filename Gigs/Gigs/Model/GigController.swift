@@ -136,11 +136,13 @@ class GigController {
         var request = URLRequest(url: gigsURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jsonEncoder = JSONEncoder()
         jsonEncoder.dateEncodingStrategy = .iso8601
         do {
-            request.httpBody = try jsonEncoder.encode(gig)
+            let jsonData = try jsonEncoder.encode(gig)
+            request.httpBody = jsonData
         } catch {
             completion(.noEncode)
             return

@@ -153,6 +153,7 @@
                         <outlet property="descriptionTextView" destination="7WR-jZ-DDX" id="7Rt-Xp-gAE"/>
                         <outlet property="dueDatePicker" destination="czQ-l0-GhC" id="Qsh-Ec-1rO"/>
                         <outlet property="jobTitleTextField" destination="1CY-Tz-TO3" id="eoN-pF-J4y"/>
+                        <outlet property="saveButton" destination="Gev-J4-Sca" id="0ec-hX-4da"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rS-4p-xYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
