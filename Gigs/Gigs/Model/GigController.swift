@@ -116,6 +116,7 @@ class GigController {
             }
             
             let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
             do {
                 self.gigs = try jsonDecoder.decode([Gig].self, from: data)
                 completion(nil)
@@ -124,4 +125,42 @@ class GigController {
             }
             }.resume()
     }
+    
+    func addGig(with gig: Gig, completion: @escaping(NetworkError?) -> ()) {
+        guard let bearer = bearer else {
+            completion(.noAuth)
+            return
+        }
+        
+        let gigsURL = baseURL.appendingPathComponent("gigs")
+        var request = URLRequest(url: gigsURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
+        do {
+            request.httpBody = try jsonEncoder.encode(gig)
+        } catch {
+            completion(.noEncode)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.badAuth)
+                return
+            }
+            
+            if let _ = error {
+                completion(.otherError)
+                return
+            }
+            
+            self.gigs.append(gig)
+            completion(nil)
+        }.resume()
+    }
+
 }
