@@ -11,6 +11,7 @@ import UIKit
 class GigsTableViewController: UITableViewController {
 
     private let gigController = GigController()
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,28 +27,40 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
-
+        let gig = gigController.gigs[indexPath.row]
+        cell.textLabel?.text = gig.title
+        dateFormatter.dateStyle = .short
+        cell.detailTextLabel?.text = "Due: \(dateFormatter.string(from: gig.dueDate))"
+        
         return cell
     }
 
-
-
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowLogin" {
+        switch segue.identifier {
+        case "LoginViewModalSegue":
             guard let loginVC = segue.destination as? LoginViewController else { return }
+            
             loginVC.gigController = gigController
+        case "ShowGig":
+            guard let gigDetailVC = segue.destination as? GigDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow else { return }
+            
+            gigDetailVC.gig = gigController.gigs[indexPath.row]
+            gigDetailVC.gigController = gigController
+        case "AddGig":
+            guard let gigDetailVC = segue.destination as? GigDetailViewController else { return }
+            
+            gigDetailVC.gigController = gigController
+        default:
+            return
         }
     }
-
-
 }
