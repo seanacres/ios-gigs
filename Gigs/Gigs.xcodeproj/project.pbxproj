@@ -13,6 +13,7 @@
 		663762AC22D67487007B6038 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663762AB22D67487007B6038 /* User.swift */; };
 		663762AE22D674A1007B6038 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663762AD22D674A1007B6038 /* GigController.swift */; };
 		663762B622D7C87B007B6038 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663762B522D7C87B007B6038 /* GigDetailViewController.swift */; };
+		663762B822D7C8E2007B6038 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663762B722D7C8E2007B6038 /* Gig.swift */; };
 		66DBDF6722BAC6B300239E7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DBDF6622BAC6B300239E7D /* AppDelegate.swift */; };
 		66DBDF6C22BAC6B400239E7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66DBDF6A22BAC6B400239E7D /* Main.storyboard */; };
 		66DBDF6E22BAC6B500239E7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66DBDF6D22BAC6B500239E7D /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		663762AB22D67487007B6038 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		663762AD22D674A1007B6038 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 		663762B522D7C87B007B6038 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		663762B722D7C8E2007B6038 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 		66DBDF6322BAC6B300239E7D /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66DBDF6622BAC6B300239E7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66DBDF6B22BAC6B400239E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		663762AF22D674A6007B6038 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				663762B722D7C8E2007B6038 /* Gig.swift */,
 				663762A922D6746D007B6038 /* Bearer.swift */,
 				663762AB22D67487007B6038 /* User.swift */,
 				663762AD22D674A1007B6038 /* GigController.swift */,
@@ -177,6 +180,7 @@
 				663762AA22D6746D007B6038 /* Bearer.swift in Sources */,
 				663762A722D673C8007B6038 /* LoginViewController.swift in Sources */,
 				66DBDF6722BAC6B300239E7D /* AppDelegate.swift in Sources */,
+				663762B822D7C8E2007B6038 /* Gig.swift in Sources */,
 				663762B622D7C87B007B6038 /* GigDetailViewController.swift in Sources */,
 				663762AC22D67487007B6038 /* User.swift in Sources */,
 				663762A522D672CD007B6038 /* GigsTableViewController.swift in Sources */,
