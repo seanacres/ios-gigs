@@ -45,7 +45,7 @@ class GigsTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "LoginViewModalSegue":
+        case "ShowLogin":
             guard let loginVC = segue.destination as? LoginViewController else { return }
             
             loginVC.gigController = gigController

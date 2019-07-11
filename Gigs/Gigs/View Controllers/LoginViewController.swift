@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     
-    var gigController: GigController!
+    var gigController: GigController?
     var loginType: LoginType = .signUp
     
     override func viewDidLoad() {
@@ -39,7 +39,8 @@ class LoginViewController: UIViewController {
     }
     
     private func logIn() {
-        guard let username = usernameTextField.text,
+        guard let gigController = gigController,
+            let username = usernameTextField.text,
             !username.isEmpty,
             let password = passwordTextField.text,
             !password.isEmpty else { return }
